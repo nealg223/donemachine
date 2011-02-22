@@ -1,0 +1,30 @@
+<div id="project_list"> 
+  <h1>Listing projects</h1> 
+ 
+  <table> 
+  <% @projects.each do |project| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
+ 
+      <td class="list_description"> 
+        <dl> 
+          <dt><%= project.title %></dt> 
+          <dd><%= truncate(strip_tags(project.description),
+                 :length => 420) %></dd> 
+        </dl> 
+      </td> 
+ 
+      <td class="list_actions"> 
+        <%= link_to 'Show', project %><br/> 
+        <%= link_to 'Edit', edit_project_path(project) %><br/> 
+        <%= link_to 'Destroy', project, 
+                    :confirm => 'Are you sure?',
+                    :method => :delete %>
+      </td> 
+    </tr> 
+  <% end %>
+  </table> 
+</div> 
+ 
+<br /> 
+ 
+<%= link_to 'New project', new_project_path %>
